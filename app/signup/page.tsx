@@ -19,6 +19,10 @@ export default function SignUp(){
                 Password,
             });
             setResponse(response.data);
+            setFirstName("");
+            setLastName("");
+            setUserName("");
+            setPassWord("")
         } catch (error) {
             console.error("Error:",error)
             setResponse(null);
