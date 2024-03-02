@@ -1,3 +1,5 @@
+import BlogTitle from "../blogtitle/page"
+
 export default function Home() {
   return (
     <div>
@@ -11,6 +13,7 @@ export default function Home() {
                 </div>
             </div>
         </nav>
+        <BlogTitle/>
         <div className="container">
             <div className="card offset col-8">
                 <div className="card-header">

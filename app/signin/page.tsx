@@ -10,12 +10,15 @@ export default function SignIn() {
     const handleSubmit=async (e:{preventDefault:()=>void;})=>{
         e.preventDefault();
         try {
-            const response =await axios.post('/api/auth/signup',{
+            const response =await axios.post('/api/auth/signin',{
                 
                 Username,
                 Password,
             });
             setResponse(response.data);
+            setUserName("");
+            setPassWord("");
+
         } catch (error) {
             console.error("Error:",error)
             setResponse(null);
