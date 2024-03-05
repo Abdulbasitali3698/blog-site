@@ -5,12 +5,13 @@ import React, { useState } from 'react'
 export default function BlogTitle() {
     const [blogContent, setBlogContent] = useState('');
     const[title,SetTitle]=useState("");
+    const [blogs, setBlogs] = useState([]);
 
     const handleSubmit = async (e:{preventDefault:()=>void;}) => {
       e.preventDefault();
   
       try {
-        const response = await axios.post('/api/blog/submit', { content: blogContent ,title});
+        const response = await axios.post('/api/blog/submit', { title, content: blogContent });
         console.log(response.data); // You can handle the response as needed
 
   
@@ -23,7 +24,16 @@ export default function BlogTitle() {
         console.error('Error:', error);
       }
     };
+    const fetchBlogs=async()=>{
+      try {
+        const response =await axios.get('/api/blog/submit');
+        setBlogs(response.data.blogs);
+      } catch (error) {
+        console.log('error fetching blogs')
+      }
+    }
   return (
+    <>
     <form onSubmit={handleSubmit}>
       <div className="container">
           <div className="card offset col-6">
@@ -51,5 +61,17 @@ export default function BlogTitle() {
           </div>
       </div>
     </form>
+    <div className="container">
+        <div className="card offset col-8">
+            <div className="card-header">
+                <h3>Title</h3>
+            </div>
+            <div className="card-body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi laboriosam, asperiores assumenda dolorem labore explicabo suscipit aspernatur ut nostrum reiciendis repellat doloribus a alias reprehenderit cumque odio distinctio culpa. Commodi.</p>
+            </div>
+        </div>
+      </div>
+    
+    </>
   )
 }
